@@ -18,9 +18,10 @@ cp ../sqljdbc* interpreter/spark/
 connect to localhost:8080 from your browser
 
 Create a new note and run following code:
+#Please use your own database name and user name/password
 %spark println(sc)
 println(sqlContext)
-val InvLinesDF = sqlContext.load("jdbc", Map( "driver" -> "com.microsoft.sqlserver.jdbc.SQLServerDriver", "url" -> "jdbc:sqlserver://10.100.49.52:1433;database=mcd002BigPharmaBaseDevl;user=gregtest;password=gregtest;trustServerCertificate=false;loginTimeout=30;", "dbtable" -> "tbInvoiceLine"))
+val InvLinesDF = sqlContext.load("jdbc", Map( "driver" -> "com.microsoft.sqlserver.jdbc.SQLServerDriver", "url" -> "jdbc:sqlserver://10.100.49.52:1433;database=dbname;user=username;password=userpassword;trustServerCertificate=false;loginTimeout=30;", "dbtable" -> "tbInvoiceLine"))
 InvLinesDF.registerTempTable("tInvLines")
 sqlContext.sql("select * from tInvLines")
 %sql select count(*) from tInvLines
